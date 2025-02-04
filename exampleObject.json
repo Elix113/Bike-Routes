@@ -1,0 +1,628 @@
+{
+  "Id": "smgpoi7888b47a9d49baef538f03dfef80f4d0_reduced",
+  "Self": "https://tourism.api.opendatahub.com/v1/ODHActivityPoi/smgpoi7888b47a9d49baef538f03dfef80f4d0_reduced",
+  "Tags": [
+      {
+          "Id": "downhills",
+          "Name": "Downhills",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/downhills",
+          "Type": "ltscategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "mountain bikes",
+          "Name": "Mountain bikes",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/mountain%20bikes",
+          "Type": "ltscategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "cycling",
+          "Name": "Cycling",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/cycling",
+          "Type": "ltscategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "summer",
+          "Name": "Summer",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/summer",
+          "Type": "odhcategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "mountain bike",
+          "Name": "Mountain bike",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/mountain%20bike",
+          "Type": "odhcategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "activity",
+          "Name": "Activity",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/activity",
+          "Type": "odhcategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "biking biking tours",
+          "Name": "Biking & Biking Tours",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/biking%20biking%20tours",
+          "Type": "odhcategory",
+          "Source": "idm"
+      },
+      {
+          "Id": "1B9AF4DA6E3A414798890E6723E71EC8",
+          "Name": "Mountain bikes",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/1B9AF4DA6E3A414798890E6723E71EC8",
+          "Type": "tagsactivity",
+          "Source": "lts"
+      },
+      {
+          "Id": "2C1D1E0CA4E849229DA90775CBBF2312",
+          "Name": "Cycling",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/2C1D1E0CA4E849229DA90775CBBF2312",
+          "Type": "tagsactivity",
+          "Source": "lts"
+      },
+      {
+          "Id": "4C0CB75EF3DA457EB8FFD05E1741D93F",
+          "Name": "Downhills",
+          "Self": "https://tourism.api.opendatahub.com/v1/Tag/4C0CB75EF3DA457EB8FFD05E1741D93F",
+          "Type": "tagsactivity",
+          "Source": "lts"
+      }
+  ],
+  "Type": "Sommer",
+  "AgeTo": null,
+  "Areas": [],
+  "SmgId": null,
+  "_Meta": {
+      "Id": "smgpoi7888b47a9d49baef538f03dfef80f4d0_reduced",
+      "Type": "odhactivitypoi",
+      "Source": "lts",
+      "Reduced": true,
+      "LastUpdate": "2024-12-19T14:39:50.1922335+00:00",
+      "UpdateInfo": {
+          "UpdatedBy": "lts.push.import",
+          "UpdateSource": "odh.importer"
+      }
+  },
+  "Active": true,
+  "AreaId": null,
+  "Detail": {
+      "de": {
+          "Title": "201 Carezza Trail",
+          "Header": null,
+          "BaseText": null,
+          "Keywords": null,
+          "Language": "de",
+          "MetaDesc": "Hier finden Freerider auf der Suche nach dem besonderen Nervenkitzel die besten Trails in Südtirol! →  • Länge • Dauer • Höhenunterschied und • alle Details zur Strecke!",
+          "AuthorTip": null,
+          "IntroText": null,
+          "MetaTitle": "201 Carezza Trail • Freeride-Strecken Südtirol",
+          "SubHeader": null,
+          "SafetyInfo": null,
+          "ParkingInfo": null,
+          "GetThereText": null,
+          "EquipmentInfo": null,
+          "AdditionalText": null,
+          "PublicTransportationInfo": null
+      },
+      "en": {
+          "Title": "201 Carezza Trail",
+          "Header": null,
+          "BaseText": null,
+          "Keywords": null,
+          "Language": "de",
+          "MetaDesc": "Find the best freeride mountain biking trails in South Tyrol for maximum thrills! → All Information about • length • duration • height difference and important • trail details!",
+          "AuthorTip": null,
+          "IntroText": null,
+          "MetaTitle": "201 Carezza Trail • Freeride trails in South Tyrol",
+          "SubHeader": null,
+          "SafetyInfo": null,
+          "ParkingInfo": null,
+          "GetThereText": null,
+          "EquipmentInfo": null,
+          "AdditionalText": null,
+          "PublicTransportationInfo": null
+      },
+      "it": {
+          "Title": "201 Carezza Trail",
+          "Header": null,
+          "BaseText": null,
+          "Keywords": null,
+          "Language": "de",
+          "MetaDesc": "I freerider alla ricerca del brivido troveranno qui i migliori trail dell'Alto Adige! →  • lunghezza • durata • dislivello e • tutti i particolari sull'itinerario!",
+          "AuthorTip": null,
+          "IntroText": null,
+          "MetaTitle": "201 Carezza Trail • Percorsi Freeride Alto Adige",
+          "SubHeader": null,
+          "SafetyInfo": null,
+          "ParkingInfo": null,
+          "GetThereText": null,
+          "EquipmentInfo": null,
+          "AdditionalText": null,
+          "PublicTransportationInfo": null
+      }
+  },
+  "IsOpen": false,
+  "Number": null,
+  "Source": "lts",
+  "TagIds": [
+      "4C0CB75EF3DA457EB8FFD05E1741D93F",
+      "1B9AF4DA6E3A414798890E6723E71EC8",
+      "2C1D1E0CA4E849229DA90775CBBF2312",
+      "mountain bike",
+      "cycling",
+      "biking biking tours",
+      "summer",
+      "downhills",
+      "mountain bikes",
+      "activity"
+  ],
+  "AgeFrom": null,
+  "AreaIds": null,
+  "GpsInfo": [
+      {
+          "Gpstype": "startingpoint",
+          "Altitude": 1743,
+          "Latitude": 46.444184,
+          "Longitude": 11.588826,
+          "AltitudeUnitofMeasure": "m"
+      },
+      {
+          "Gpstype": "position",
+          "Altitude": 1743,
+          "Latitude": 46.444184,
+          "Longitude": 11.588826,
+          "AltitudeUnitofMeasure": "m"
+      },
+      {
+          "Gpstype": "arrivalpoint",
+          "Altitude": 1182,
+          "Latitude": 46.432278,
+          "Longitude": 11.54581,
+          "AltitudeUnitofMeasure": "m"
+      }
+  ],
+  "LTSTags": [
+      {
+          "Id": "downhills",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/downhills",
+          "Level": 1,
+          "LTSRID": "4C0CB75EF3DA457EB8FFD05E1741D93F",
+          "LTSTins": null,
+          "TagName": {
+              "de": "Downhills",
+              "en": "Downhills",
+              "it": "Downhills"
+          }
+      },
+      {
+          "Id": "mountainbikes",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/mountainbikes",
+          "Level": 1,
+          "LTSRID": "1B9AF4DA6E3A414798890E6723E71EC8",
+          "LTSTins": null,
+          "TagName": {
+              "de": "Mountainbikes",
+              "en": "Mountain bikes",
+              "it": "Mountain bike"
+          }
+      },
+      {
+          "Id": "radfahren",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/radfahren",
+          "Level": 0,
+          "LTSRID": "2C1D1E0CA4E849229DA90775CBBF2312",
+          "LTSTins": null,
+          "TagName": {
+              "de": "Radfahren",
+              "en": "Cycling",
+              "it": "Ciclismo"
+          }
+      }
+  ],
+  "Mapping": {},
+  "ODHTags": [
+      {
+          "Id": "mountainbike freeride",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/mountainbike%20freeride"
+      },
+      {
+          "Id": "bikeparks",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/bikeparks"
+      },
+      {
+          "Id": "highlight_regions",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/highlight_regions"
+      },
+      {
+          "Id": "highlight_regions_spring",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/highlight_regions_spring"
+      },
+      {
+          "Id": "highlight_regions_autumn",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/highlight_regions_autumn"
+      },
+      {
+          "Id": "mountainbike",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/mountainbike"
+      },
+      {
+          "Id": "radfahren",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/radfahren"
+      },
+      {
+          "Id": "radfahren radtouren",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/radfahren%20radtouren"
+      },
+      {
+          "Id": "sommer",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/sommer"
+      },
+      {
+          "Id": "downhills",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/downhills"
+      },
+      {
+          "Id": "mountainbike",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/mountainbike"
+      },
+      {
+          "Id": "mountainbikes",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/mountainbikes"
+      },
+      {
+          "Id": "activity",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHTag/activity"
+      }
+  ],
+  "PoiType": "Downhill",
+  "Ratings": null,
+  "SmgTags": [
+      "mountainbike freeride",
+      "bikeparks",
+      "highlight_regions",
+      "highlight_regions_spring",
+      "highlight_regions_autumn",
+      "mountainbike",
+      "radfahren",
+      "radfahren radtouren",
+      "sommer",
+      "downhills",
+      "mountainbike",
+      "mountainbikes",
+      "activity"
+  ],
+  "SubType": "Radfahren Radtouren",
+  "CustomId": null,
+  "GpsTrack": null,
+  "OwnerRid": null,
+  "DishRates": null,
+  "FeetClimb": false,
+  "GpsPoints": {
+      "position": {
+          "Gpstype": "position",
+          "Altitude": 1743,
+          "Latitude": 46.444184,
+          "Longitude": 11.588826,
+          "AltitudeUnitofMeasure": "m"
+      },
+      "arrivalpoint": {
+          "Gpstype": "arrivalpoint",
+          "Altitude": 1182,
+          "Latitude": 46.432278,
+          "Longitude": 11.54581,
+          "AltitudeUnitofMeasure": "m"
+      },
+      "startingpoint": {
+          "Gpstype": "startingpoint",
+          "Altitude": 1743,
+          "Latitude": 46.444184,
+          "Longitude": 11.588826,
+          "AltitudeUnitofMeasure": "m"
+      }
+  },
+  "Highlight": null,
+  "OdhActive": true,
+  "Shortname": "201 Carezza Trail",
+  "SmgActive": true,
+  "WayNumber": 201,
+  "Difficulty": null,
+  "Exposition": null,
+  "Facilities": null,
+  "HasRentals": true,
+  "IsPrepared": null,
+  "LastChange": "2024-12-19T14:39:50.1922335+00:00",
+  "VideoItems": {},
+  "ChildPoiIds": null,
+  "FirstImport": "2015-07-28T08:43:35.3297299",
+  "HasLanguage": [
+      "de",
+      "it",
+      "en"
+  ],
+  "IsWithLigth": true,
+  "LicenseInfo": {
+      "Author": "",
+      "License": "CC0",
+      "ClosedData": false,
+      "LicenseHolder": "https://www.lts.it"
+  },
+  "PoiProperty": {},
+  "PoiServices": null,
+  "PublishedOn": [
+      "suedtirol.info",
+      "idm-marketplace"
+  ],
+  "RunToValley": null,
+  "ContactInfos": {
+      "de": {
+          "Tax": null,
+          "Url": "http://www.facebook.com/carezzatrail/?fref=ts",
+          "Vat": null,
+          "Area": null,
+          "City": null,
+          "Email": null,
+          "Region": null,
+          "Address": null,
+          "LogoUrl": null,
+          "Surname": null,
+          "ZipCode": null,
+          "Language": "de",
+          "Faxnumber": null,
+          "Givenname": null,
+          "NamePrefix": null,
+          "RegionCode": null,
+          "CompanyName": null,
+          "CountryCode": null,
+          "CountryName": null,
+          "Phonenumber": null
+      },
+      "en": {
+          "Tax": null,
+          "Url": "http://www.facebook.com/carezzatrail/?fref=ts",
+          "Vat": null,
+          "Area": null,
+          "City": null,
+          "Email": null,
+          "Region": null,
+          "Address": null,
+          "LogoUrl": null,
+          "Surname": null,
+          "ZipCode": null,
+          "Language": "en",
+          "Faxnumber": null,
+          "Givenname": null,
+          "NamePrefix": null,
+          "RegionCode": null,
+          "CompanyName": null,
+          "CountryCode": null,
+          "CountryName": null,
+          "Phonenumber": null
+      },
+      "it": {
+          "Tax": null,
+          "Url": "http://www.facebook.com/carezzatrail/?fref=ts",
+          "Vat": null,
+          "Area": null,
+          "City": null,
+          "Email": null,
+          "Region": null,
+          "Address": null,
+          "LogoUrl": null,
+          "Surname": null,
+          "ZipCode": null,
+          "Language": "it",
+          "Faxnumber": null,
+          "Givenname": null,
+          "NamePrefix": null,
+          "RegionCode": null,
+          "CompanyName": null,
+          "CountryCode": null,
+          "CountryName": null,
+          "Phonenumber": null
+      }
+  },
+  "DistanceInfo": null,
+  "ImageGallery": null,
+  "LocationInfo": {
+      "TvInfo": {
+          "Id": "522822C751CA11D18F1400A02427D15E",
+          "Name": {
+              "cs": "Eggental Tourimus / Val d'Ega Turismo",
+              "de": "Eggental Tourismus",
+              "en": "Eggental Tourimus / Val d'Ega Turismo",
+              "fr": "Eggental Tourimus / Val d'Ega Turismo",
+              "it": "Val d'Ega Turismo",
+              "nl": "Eggental Tourimus / Val d'Ega Turismo",
+              "pl": "Eggental Tourimus / Val d'Ega Turismo",
+              "ru": "Дойчнофен - Оберегген/Nova Ponente"
+          },
+          "Self": "https://tourism.api.opendatahub.com/v1/TourismAssociation/522822C751CA11D18F1400A02427D15E"
+      },
+      "AreaInfo": null,
+      "RegionInfo": {
+          "Id": "D2633A21C24E11D18F1B006097B8970B",
+          "Name": {
+              "cs": "Oblast Eggental Dolomity",
+              "de": "Dolomitenregion Eggental",
+              "en": "Dolomites Region Eggental",
+              "fr": "Région des Dolomites Eggental",
+              "it": "Regione dolomitica Val d'Ega",
+              "nl": "Dolomietenregio Eggental",
+              "pl": "Region Eggental w Dolomitach",
+              "ru": "регион Эггенталь, Доломиты"
+          },
+          "Self": "https://tourism.api.opendatahub.com/v1/Region/D2633A21C24E11D18F1B006097B8970B"
+      },
+      "DistrictInfo": {
+          "Id": "79CBD81D51C911D18F1400A02427D15E",
+          "Name": {
+              "cs": "Welschnofen/Nova Levante",
+              "de": "Welschnofen",
+              "en": "Welschnofen/Nova Levante",
+              "fr": "Welschnofen/Nova Levante",
+              "it": "Nova Levante",
+              "nl": "Welschnofen/Nova Levante",
+              "pl": "Welschnofen/Nova Levante",
+              "ru": "Нова Леванте"
+          },
+          "Self": "https://tourism.api.opendatahub.com/v1/District/79CBD81D51C911D18F1400A02427D15E"
+      },
+      "MunicipalityInfo": {
+          "Id": "B3FD0D642BD74AE6AE952DC2548963A2",
+          "Name": {
+              "cs": "Welschnofen/Nova Levante",
+              "de": "Welschnofen",
+              "en": "Welschnofen/Nova Levante",
+              "fr": "Welschnofen/Nova Levante",
+              "it": "Nova Levante",
+              "nl": "Welschnofen/Nova Levante",
+              "pl": "Welschnofen/Nova Levante",
+              "ru": "Вельшнофен/Nova Levante"
+          },
+          "Self": "https://tourism.api.opendatahub.com/v1/Municipality/B3FD0D642BD74AE6AE952DC2548963A2"
+      }
+  },
+  "MasterPoiIds": null,
+  "AltitudeSumUp": null,
+  "BikeTransport": false,
+  "CategoryCodes": null,
+  "LiftAvailable": false,
+  "DistanceLength": null,
+  "RelatedContent": null,
+  "SyncUpdateMode": "Full",
+  "AltitudeSumDown": null,
+  "HasFreeEntrance": null,
+  "OutdooractiveID": null,
+  "CapacityCeremony": null,
+  "CopyrightChecked": null,
+  "DistanceDuration": null,
+  "AdditionalContact": null,
+  "OperationSchedule": null,
+  "AdditionalPoiInfos": {
+      "cs": {
+          "Novelty": "",
+          "PoiType": "Downhill",
+          "SubType": "Cyklistika & cyklovýlety",
+          "Language": "cs",
+          "MainType": "Léto",
+          "Categories": [
+              "Cyklistika",
+              "Horské kolo",
+              "Cyklistika a cyklistické výlety"
+          ]
+      },
+      "de": {
+          "Novelty": "<strong>NEU!</strong> Carezza Pumpline am Beginn des Biketrail Carezza<br /><ul><li>L&auml;nge: 1,6 km</li><li>H&ouml;henunterschied: 100 hm</li></ul>",
+          "PoiType": "Downhill",
+          "SubType": "Rad fahren & Radtouren",
+          "Language": "de",
+          "MainType": "Sommer",
+          "Categories": [
+              "Radfahren",
+              "Mountainbike",
+              "Radfahren & Radtouren"
+          ]
+      },
+      "en": {
+          "Novelty": "<strong>NEW!</strong> Carezza Pumpline at the beginning of the Carezza Trail<br /><ul><li>Length: 1,6 km</li><li>Vertical metres: 100 hm</li></ul>",
+          "PoiType": "Downhill",
+          "SubType": "Biking & Biking Tours",
+          "Language": "en",
+          "MainType": "Summer",
+          "Categories": [
+              "Cycling",
+              "Mountain bike",
+              "Biking & Biking Tours"
+          ]
+      },
+      "fr": {
+          "Novelty": "",
+          "PoiType": "Downhill",
+          "SubType": "Vélo & itinéraires",
+          "Language": "fr",
+          "MainType": "Été",
+          "Categories": [
+              "Cyclisme",
+              "VTT",
+              "Cyclisme et randonnées à vélo"
+          ]
+      },
+      "it": {
+          "Novelty": "<strong>NOVIT&Agrave;</strong> Carezza Pumpline all'inizio del Biketrail Carezza<br /><ul><li>Lunghezza: 1,6 km</li><li>Dislivello: 100 hm</li></ul>",
+          "PoiType": "Downhill",
+          "SubType": "Ciclismo e itinerari ciclistici",
+          "Language": "it",
+          "MainType": "Estate",
+          "Categories": [
+              "Ciclismo",
+              "Mountain bike",
+              "Ciclismo e itinerari ciclistici"
+          ]
+      },
+      "nl": {
+          "Novelty": "",
+          "PoiType": "Downhill",
+          "SubType": "Fietsen & fietstochten",
+          "Language": "nl",
+          "MainType": "Zomer",
+          "Categories": [
+              "Fietsen",
+              "mountainbike",
+              "Fietsen & Fietstochten"
+          ]
+      },
+      "pl": {
+          "Novelty": "",
+          "PoiType": "Downhill",
+          "SubType": "Trasy i wyprawy rowerowe",
+          "Language": "pl",
+          "MainType": "Lato",
+          "Categories": [
+              "Jazda na rowerze",
+              "Rower górski",
+              "Jazda na rowerze i wycieczki rowerowe"
+          ]
+      },
+      "ru": {
+          "Novelty": "",
+          "PoiType": "Скоростной спуск",
+          "SubType": "Велосипедные туры",
+          "Language": "ru",
+          "MainType": "Лето",
+          "Categories": [
+              "Горный велосипед",
+              "Велосипедные туры"
+          ]
+      }
+  },
+  "AltitudeDifference": null,
+  "MaxSeatingCapacity": null,
+  "AltitudeLowestPoint": null,
+  "ODHActivityPoiTypes": [
+      {
+          "Id": "Sommer",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHActivityPoiTypes/Sommer",
+          "Type": "Type"
+      },
+      {
+          "Id": "Radfahren Radtouren",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHActivityPoiTypes/Radfahren%20Radtouren",
+          "Type": "SubType"
+      },
+      {
+          "Id": "Downhill",
+          "Self": "https://tourism.api.opendatahub.com/v1/ODHActivityPoiTypes/Downhill",
+          "Type": "PoiType"
+      }
+  ],
+  "SyncSourceInterface": "activitydata",
+  "AdditionalProperties": {},
+  "AltitudeHighestPoint": null,
+  "TourismorganizationId": null,
+  "OutdooractiveElevationID": null
+}

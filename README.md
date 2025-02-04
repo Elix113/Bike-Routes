@@ -5,6 +5,7 @@
 https://databrowser.opendatahub.com/dataset-overview/35c70997-1a9e-4fe5-bc63-64cf961742f5
 https://analytics.opendatahub.com/
 https://wiki.openstreetmap.org/wiki/OpenLayers_Marker_Example
+https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling
 
 ## Development server
 
