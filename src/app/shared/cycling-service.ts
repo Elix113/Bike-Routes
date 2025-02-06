@@ -6,20 +6,30 @@ export class CyclingService {
 
   private readonly URL = 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling';
   private language: Language = Language.DE;
-  public ITEMS: Item[] = [];
+  private RAW_ITEMS: any[] = [];
+  private ITEMS: [Item, boolean][] = []
+
 
   constructor() {}
 
-  public async getItems(): Promise<Item[]> {
-    await this.loadJsonPage(1);
-    return this.ITEMS;
+  public getItems(reduce: boolean = true): Item[] {
+    if (this.ITEMS.length > 0) {
+      if (reduce)
+        return this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
+      else
+        return this.ITEMS.map(([item, flag]) => item);
+    }
+    else {
+      console.log("Fehler: Items müssen zuerst geladen werden");
+      return [];
+    }
   }
 
   public changeLanguage(language: Language): Item[] {
     this.language = language;
-    this.ITEMS.forEach(item => item.changeLanguage(this.getDetail(item)));
+    this.ITEMS.forEach((i, index) => i[0].changeLanguage(this.getDetail(this.RAW_ITEMS[index])));
     console.log(`Sprache zu ${this.language} geändert`);
-    return this.ITEMS;
+    return this.getItems();
   }
 
   public getLanguage(): Language {
@@ -53,26 +63,29 @@ export class CyclingService {
   //   }
   // }
 
-  private async loadJsonPage(page: number) {
+  public async loadPage(page: number, reduce: boolean = true): Promise<Item[]> {
     try {
         const response = await fetch(this.URL + `&pagenumber=${page}`);
         if (!response.ok)
           throw new Error(`HTTP-Fehler: ${response.status}`);
         const data = await response.json();
+        this.RAW_ITEMS = data.Items ;
         this.addItems(data.Items);
         console.log(`Seite ${page} geladen: ${this.ITEMS.length} Einträge`);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
+    return this.getItems(reduce);
   }
 
-  private async loadJsonAll() {
+  public async loadAll(reduce: boolean = true): Promise<Item[]> {
     let nextPage: string | null = this.URL + "&pagenumber=1";
     try {
         while (nextPage) {
             const response : Response = await fetch(nextPage);
             if (!response.ok) throw new Error(`HTTP-Fehler: ${response.status}`);
             const data = await response.json();
+            this.RAW_ITEMS.push(...data.Items)
             this.addItems(data.Items);
             nextPage = data.NextPage;
         }
@@ -80,20 +93,26 @@ export class CyclingService {
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
+    return this.getItems(reduce);
   }
 
   private addItems(rawItems: any[]) {
-    rawItems.forEach(item => {
-      this.ITEMS.push(new Item(
-        this.getId(item),
-        this.getFirstImport(item),
-        this.getLastUpdate(item),
-        this.getDetail(item),
-        this.getGPSPosition(item),
-        this.getGPSStartingPoint(item),
-        this.getGPSArrivalPoint(item),
-        this.getOther(item)
-      ));
+    rawItems.forEach(rawItem => {
+      const item = new Item(
+        this.getId(rawItem),
+        this.getFirstImport(rawItem),
+        this.getLastUpdate(rawItem),
+        this.getTags(rawItem),
+        this.getDetail(rawItem),
+        this.getGPSPosition(rawItem),
+        this.getGPSStartingPoint(rawItem),
+        this.getGPSArrivalPoint(rawItem),
+        this.getOther(rawItem),
+      );
+      let reduced = false;
+      if (item.detail.Title && ((item.startingPoint && item.arrivalPoint) || item.position))
+        reduced = true;
+      this.ITEMS.push([item, reduced]);
     })
   }
 
@@ -144,7 +163,24 @@ export class CyclingService {
     }
   }
 
-  private getTags(rawItem: any) {
-
+  private getTags(rawItem: any): string[] {
+    const tags: string[] = [];
+    rawItem.Tags.forEach((i: any) => {
+      if (!tags.includes(i.Name))
+        tags.push(i.Name);
+    });
+    rawItem.LTSTags.forEach((i: any) => {
+      if (!tags.includes(i.TagName.en))
+        tags.push(i.TagName.en);
+    });
+    rawItem.ODHTags.forEach((i: any) => {
+      if (!tags.includes(i.Id))
+        tags.push(i.Id);
+    });
+    rawItem.SmgTags.forEach((i: any) => {
+      if (!tags.includes(i))
+        tags.push(i);
+    });
+    return tags;
   }
 }
