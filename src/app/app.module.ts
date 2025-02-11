@@ -16,6 +16,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
+import { BoundaryService } from './shared/boundary.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,6 @@ import { MapComponent } from './map/map.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    BrowserModule,
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
@@ -39,9 +40,10 @@ import { MapComponent } from './map/map.component';
     MatSidenavModule,
     MatListModule,
     FlexLayoutModule,
-    FlexModule
+    FlexModule,
+    HttpClientModule
   ],
-  providers: [CyclingService],
+  providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

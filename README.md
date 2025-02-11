@@ -6,6 +6,9 @@ https://databrowser.opendatahub.com/dataset-overview/35c70997-1a9e-4fe5-bc63-64c
 https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling
 https://analytics.opendatahub.com/
 https://leafletjs.com/
+https://www.digitalocean.com/community/tutorials/angular-angular-and-leaflet-marker-service
+https://gist.github.com/tyrasd/3bdce59f3492685db927?short_path=efa4350#file-map-geojson
+https://www.thunderforest.com/
 
 ## Development server
 

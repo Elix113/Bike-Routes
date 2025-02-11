@@ -4,7 +4,7 @@ import { Detail, GpsInfo, Item, Language, Other } from "./Item";
 @Injectable()
 export class CyclingService {
 
-  private readonly URL = 'https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling';
+  private readonly URL = "https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling";
   private language: Language = Language.DE;
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
@@ -15,10 +15,15 @@ export class CyclingService {
 
   public getItems(reduce: boolean = true): Item[] {
     if (this.finishedLoading) {
-      if (reduce)
-        return this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
-      else
+      if (reduce) {
+        const items = this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
+        console.log(`${items.length} verwendbare Einträge`);
+        return items;
+      }
+      else {
+        console.log(`${this.ITEMS.length} verwendbare Einträge`);
         return this.ITEMS.map(([item, flag]) => item);
+      }
     }
     else {
       console.error("Items sind noch nicht geladen");
@@ -124,11 +129,15 @@ export class CyclingService {
         this.getGPSArrivalPoint(rawItem),
         this.getOther(rawItem),
       );
-      let reduced = false;
-      if (item.detail.Title && ((item.startingPoint && item.arrivalPoint) || item.position))
-        reduced = true;
-      this.ITEMS.push([item, reduced]);
+      this.ITEMS.push([item, this.isValid(item)]);
     })
+  }
+
+  private isValid(item: Item) {
+    let valid = false;
+    if (item.detail.Title && item.position && item.arrivalPoint && item.position.Latitude > 30)
+      valid = true;
+    return valid;
   }
 
   private getId(rawItem: any): string {
