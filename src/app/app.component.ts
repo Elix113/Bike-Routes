@@ -9,22 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'BikeRoutes';
-  item!: Item;
+  items!: Item[];
 
   constructor(private cs: CyclingService) {}
 
   ngOnInit(): void {
-    this.cs.loadAll().then(items => {
-      this.item = items[0]
-    });
+    // this.cs.loadAll().then(items => {
+    //   this.items = items;
+    // });
   }
-
-  onClick() {
-    if (this.cs.getLanguage() === Language.DE)
-      this.item = this.cs.changeLanguage(Language.IT)[0];
-    else
-      this.item = this.cs.changeLanguage(Language.DE)[0];
-
-  }
-
 }

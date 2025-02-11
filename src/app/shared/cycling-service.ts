@@ -8,28 +8,35 @@ export class CyclingService {
   private language: Language = Language.DE;
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
+  private finishedLoading: boolean = false;
 
 
   constructor() {}
 
   public getItems(reduce: boolean = true): Item[] {
-    if (this.ITEMS.length > 0) {
+    if (this.finishedLoading) {
       if (reduce)
         return this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
       else
         return this.ITEMS.map(([item, flag]) => item);
     }
     else {
-      console.log("Fehler: Items müssen zuerst geladen werden");
+      console.error("Items sind noch nicht geladen");
       return [];
     }
   }
 
   public changeLanguage(language: Language): Item[] {
-    this.language = language;
-    this.ITEMS.forEach((i, index) => i[0].changeLanguage(this.getDetail(this.RAW_ITEMS[index])));
-    console.log(`Sprache zu ${this.language} geändert`);
-    return this.getItems();
+    if (this.finishedLoading) {
+      this.language = language;
+      this.ITEMS.forEach((i, index) => i[0].changeLanguage(this.getDetail(this.RAW_ITEMS[index])));
+      console.log(`Sprache zu ${this.language} geändert`);
+      return this.getItems();
+    }
+    else {
+      console.error("Items sind noch nicht geladen");
+      return [];
+    }
   }
 
   public getLanguage(): Language {
@@ -64,14 +71,18 @@ export class CyclingService {
   // }
 
   public async loadPage(page: number, reduce: boolean = true): Promise<Item[]> {
+    this.RAW_ITEMS = [];
+    this.ITEMS = [];
+    this.finishedLoading = false;
     try {
-        const response = await fetch(this.URL + `&pagenumber=${page}`);
-        if (!response.ok)
-          throw new Error(`HTTP-Fehler: ${response.status}`);
-        const data = await response.json();
-        this.RAW_ITEMS = data.Items ;
-        this.addItems(data.Items);
-        console.log(`Seite ${page} geladen: ${this.ITEMS.length} Einträge`);
+      const response = await fetch(this.URL + `&pagenumber=${page}`);
+      if (!response.ok)
+        throw new Error(`HTTP-Fehler: ${response.status}`);
+      const data = await response.json();
+      this.RAW_ITEMS = data.Items ;
+      this.addItems(data.Items);
+      this.finishedLoading = true;
+      console.log(`Seite ${page} geladen: ${this.ITEMS.length} Einträge`);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
@@ -79,6 +90,9 @@ export class CyclingService {
   }
 
   public async loadAll(reduce: boolean = true): Promise<Item[]> {
+    this.RAW_ITEMS = [];
+    this.ITEMS = [];
+    this.finishedLoading = false;
     let nextPage: string | null = this.URL + "&pagenumber=1";
     try {
         while (nextPage) {
@@ -89,6 +103,7 @@ export class CyclingService {
             this.addItems(data.Items);
             nextPage = data.NextPage;
         }
+        this.finishedLoading = true;
         console.log(`Alle Seiten geladen: ${this.ITEMS.length} Einträge`);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
