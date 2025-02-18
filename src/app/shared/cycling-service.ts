@@ -21,7 +21,7 @@ export class CyclingService {
         return items;
       }
       else {
-        console.log(`${this.ITEMS.length} verwendbare Einträge`);
+        console.log(`${this.ITEMS.length} Einträge`);
         return this.ITEMS.map(([item, flag]) => item);
       }
     }
@@ -34,7 +34,9 @@ export class CyclingService {
   public changeLanguage(language: Language): Item[] {
     if (this.finishedLoading) {
       this.language = language;
-      this.ITEMS.forEach((i, index) => i[0].changeLanguage(this.getDetail(this.RAW_ITEMS[index])));
+      this.ITEMS.forEach((i, index) => {
+        i[0].detail = this.getDetail(this.RAW_ITEMS[index])
+    });
       console.log(`Sprache zu ${this.language} geändert`);
       return this.getItems();
     }
@@ -75,7 +77,11 @@ export class CyclingService {
   //   }
   // }
 
-  public async loadPage(page: number, reduce: boolean = true): Promise<Item[]> {
+  public load(page: number = 0, reduce: boolean = true): Promise<Item[]> {
+      return page === 0 ? this.loadAll(reduce) : this.loadPage(page, reduce);
+  }
+
+  private async loadPage(page: number, reduce: boolean = true): Promise<Item[]> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
     this.finishedLoading = false;
@@ -94,7 +100,7 @@ export class CyclingService {
     return this.getItems(reduce);
   }
 
-  public async loadAll(reduce: boolean = true): Promise<Item[]> {
+  private async loadAll(reduce: boolean = true): Promise<Item[]> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
     this.finishedLoading = false;
@@ -133,10 +139,36 @@ export class CyclingService {
     })
   }
 
+  /**
+   * Validiert ein Item und gibt true zurück, wenn alle notwendigen Daten vorhanden sind.
+   * - Falls die GPS-Typen nicht richtig geordnet sind, werde sie umgeordnet
+   * - Falls Breiten- und Längengrad vertauscht sind, werden diese umgetauscht
+  */
   private isValid(item: Item) {
     let valid = false;
-    if (item.detail.Title && item.position && item.arrivalPoint && item.position.Latitude > 30)
+    if (item.detail.Title && item.position && item.startingPoint && (item.arrivalPoint || item.isLoop)) {
+
+      if (item.position.Gpstype === "startingpoint" ) {
+        const arrivalPoint: GpsInfo = item.startingPoint;
+        item.startingPoint = item.position;
+        item.position = item.arrivalPoint
+        item.arrivalPoint = arrivalPoint;
+      }
+      if (item.position.Latitude < 45 && item.position.Longitude > 13) {
+        let lat: number = item.position.Longitude;
+        item.position.Longitude = item.position.Latitude;
+        item.position.Latitude = lat;
+        lat = item.startingPoint.Longitude;
+        item.startingPoint.Longitude = item.startingPoint.Latitude;
+        item.startingPoint.Latitude = lat;
+        if (item.arrivalPoint) {
+          lat = item.arrivalPoint.Longitude;
+          item.arrivalPoint.Longitude = item.arrivalPoint.Latitude;
+          item.arrivalPoint.Latitude = lat;
+        }
+      }
       valid = true;
+    }
     return valid;
   }
 

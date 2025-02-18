@@ -1,0 +1,11 @@
+<div class="header">
+  <h3>{{item.detail.Title}}</h3>
+  <button mat-icon-button [routerLink]="['/details', item.id]" matTooltip="Details anzeigen">
+    <mat-icon>info</mat-icon>
+  </button>
+</div>
+<div *ngIf="heightDifference">
+  <p><strong>Starthöhenmeter:</strong> {{item.startingPoint.Altitude}} m</p>
+  <p><strong>Endhöhenmeter:</strong> {{item.arrivalPoint.Altitude}} m</p>
+  <p><strong>Höhenunterschied:</strong> {{heightDifference}} m</p>
+</div>

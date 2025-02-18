@@ -14,15 +14,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
 import { BoundaryService } from './shared/boundary.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    MarkerPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatListModule,
     FlexLayoutModule,
     FlexModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTooltipModule
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]

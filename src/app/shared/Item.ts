@@ -50,6 +50,9 @@ export enum Language {
 }
 
 export class Item {
+
+  public isLoop: boolean; //Wenn true, hat das item kein arrivalPoint
+
   constructor(
     public id: string,
     public firstImport: Date,
@@ -59,9 +62,7 @@ export class Item {
     public position: GpsInfo,
     public startingPoint: GpsInfo,
     public arrivalPoint: GpsInfo,
-    public other: Other) {}
-
-    changeLanguage(detail: Detail) {
-      this.detail = detail;
+    public other: Other) {
+      this.isLoop = startingPoint?.Gpstype == "startingandarrivalpoint";
     }
 }
