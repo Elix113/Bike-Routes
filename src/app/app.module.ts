@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
@@ -25,7 +26,7 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
   declarations: [
     AppComponent,
     MapComponent,
-    MarkerPopupComponent
+    MarkerPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
     FlexLayoutModule,
     FlexModule,
     HttpClientModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatCardModule
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]
