@@ -8,7 +8,7 @@ import { Item } from '../shared/Item';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
-  private items!: Item[];
+  public items!: Item[];
   constructor(private cs: CyclingService) {}
 
   ngOnInit(): void {
@@ -16,4 +16,5 @@ export class ListComponent implements OnInit {
       this.items = items;
     });
   }
+
 }
