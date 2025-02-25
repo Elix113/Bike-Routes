@@ -20,13 +20,16 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
 import { BoundaryService } from './shared/boundary.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
+import { ListComponent } from './list/list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     MarkerPopupComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +51,8 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
     HttpClientModule,
     MatTooltipModule,
     MatCardModule
+    MatTableModule,
+    MatTabsModule
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]

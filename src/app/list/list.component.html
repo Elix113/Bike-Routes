@@ -1,0 +1,17 @@
+<mat-list>
+  <mat-list-item *ngFor="let item of items">
+    <span matListItemTitle>{{item.detail.Title}}</span>
+    <span matListItemLine>{{item.detail.MetaDesc}}</span>
+    <span matListItemLine>Koordinaten {{item.position.Latitude}}, {{item.position.Longitude}}</span>
+    <span matListItemLine>{{item.startingPoint.Altitude}}</span>
+    <span matListItemLine>{{item.arrivalPoint.Altitude}}</span>
+    </mat-list-item>
+  <mat-list-item>
+    <span matListItemTitle>Salt</span>
+    <span matListItemLine>Extracted from sea water</span>
+  </mat-list-item>
+  <mat-list-item>
+    <span matListItemTitle>Paprika</span>
+    <span matListItemLine>Produced by dried and ground red peppers</span>
+  </mat-list-item>
+</mat-list>

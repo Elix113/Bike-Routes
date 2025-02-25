@@ -1,1 +1,28 @@
-<router-outlet></router-outlet>
+<nav
+  mat-tab-nav-bar
+  [tabPanel]="tabPanel"
+  backgroundColor="primary"
+  color="accent"
+>
+  <a
+    mat-tab-link
+    routerLink="/list"
+    routerLinkActive
+    #homeTab="routerLinkActive"
+    [active]="homeTab.isActive"
+  >
+    List
+  </a>
+  <a
+    mat-tab-link
+    routerLink="/map"
+    routerLinkActive
+    #stationsTab="routerLinkActive"
+    [active]="stationsTab.isActive"
+  >
+    Map
+  </a>
+</nav>
+<mat-tab-nav-panel #tabPanel>
+  <router-outlet></router-outlet>
+</mat-tab-nav-panel>
