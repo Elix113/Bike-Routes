@@ -18,11 +18,15 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 import { MapComponent } from './map/map.component';
 import { BoundaryService } from './shared/boundary.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ListComponent } from './list/list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent
+    MapComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     MatListModule,
     FlexLayoutModule,
     FlexModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatTabsModule
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]

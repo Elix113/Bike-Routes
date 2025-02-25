@@ -40,7 +40,7 @@ export class MapComponent implements OnInit, AfterViewInit {
   constructor(private cs: CyclingService, private bs: BoundaryService) {}
 
   ngOnInit(): void {
-    this.cs.loadPage(3).then((items) => {
+    this.cs.loadPage(1).then((items) => {
       this.items = items;
       this.mapReady.then(() => {
         this.addMarkers();
