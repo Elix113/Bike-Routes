@@ -1,11 +1,11 @@
 import { GpsInfo } from './../shared/Item';
-import { Marker } from './../../../node_modules/@types/leaflet/index.d';
 import { GeoJsonObject } from './../../../node_modules/@types/geojson/index.d';
 import * as L from 'leaflet';
 import { CyclingService } from '../shared/cycling-service';
 import { Item } from '../shared/Item';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BoundaryService } from '../shared/boundary.service';
+import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -37,10 +37,10 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private boundary!: GeoJsonObject;
 
-  constructor(private cs: CyclingService, private bs: BoundaryService) {}
+  constructor(private cs: CyclingService, private bs: BoundaryService, private viewContainerRef: ViewContainerRef) {}
 
   ngOnInit(): void {
-    this.cs.loadPage(1).then((items) => {
+    this.cs.loadPage(3).then((items) => {
       this.items = items;
       this.mapReady.then(() => {
         this.addMarkers();
@@ -104,59 +104,38 @@ export class MapComponent implements OnInit, AfterViewInit {
   private addMarkers() {
     const markers: L.Marker[] = []
     for (const item of this.items) {
-      const marker = L.marker([item.position.Latitude, item.position.Longitude])
-        .bindPopup(this.createPopupContent(item));
-        marker.on("click", () => this.handleMarkerClick(marker, item));
-        markers.push(marker);
+      markers.push(this.createMarker(item));
     }
     const lg: L.LayerGroup = L.layerGroup(markers).addTo(this.map);
     this.layerControl.addOverlay(lg, "Pins").addTo(this.map)
   }
 
-  private createPopupContent(item: Item): string {
-    return `
-      <div style="
-        font-family: Arial, sans-serif;
-        text-align: left;
-        padding: 10px;
-        width: 250px;
-        border-radius: 8px;
-        background-color: #f8f9fa;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-      ">
-        <h3 style="margin: 0 0 5px; color: #007bff;">${item.detail.Title}</h3>
-        <p style="margin: 5px 0; font-size: 14px; color: #333;">
-          <strong>Beschreibung:</strong> ${item.detail.MetaDesc}
-        </p>
-        <p style="margin: 5px 0; font-size: 14px;">
-          <strong>Koordinaten:</strong> ${item.position.Latitude}, ${item.position.Longitude}
-        </p>
-        <p style="margin: 5px 0; font-size: 14px;">
-          <strong>Starthöhenmeter:</strong> ${item.startingPoint.Altitude} m
-        </p>
-        <p style="margin: 5px 0; font-size: 14px;">
-          <strong>Endhöhenmeter:</strong> ${item.arrivalPoint.Altitude} m
-        </p>
-        <p style="margin: 5px 0; font-size: 14px;">
-          <strong>Höhenunterschied:</strong> ${item.startingPoint.Altitude - item.arrivalPoint.Altitude} m
-        </p>
-      </div>
-    `;
+  private createPopupContent(item: Item): HTMLElement {
+    const componentRef = this.viewContainerRef.createComponent(MarkerPopupComponent);
+    componentRef.instance.item = item;
+
+    const div = document.createElement('div');
+    div.appendChild(componentRef.location.nativeElement);
+
+    return div;
   }
 
   private handleMarkerClick(marker: L.Marker, item: Item) {
-    this.map.flyTo(marker.getLatLng(), 15);
-    const line = this.createPolyline(item)
-    if (line) {
-      line.addTo(this.map);
-      marker.once("popupclose", () => line.remove());
-    }
+    this.map.flyTo(marker.getLatLng(), 13).once("moveend", () => {
+      const line = this.createRoutePolyline(item, true)
+      if (line) {
+        line.addTo(this.map);
+        marker.once("popupclose", () => line.remove());
+      }
+      const arrivalPoint = this.createArrivalCircle(item).addTo(this.map);
+      marker.once("popupclose", () => arrivalPoint.remove());
+    });
   }
 
   private addRoutes() {
     const lines: L.Polyline[] = []
     for (const item of this.items) {
-      const line = this.createPolyline(item);
+      const line = this.createRoutePolyline(item);
       if (line)
         lines.push(line);
     }
@@ -164,13 +143,34 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.layerControl.addOverlay(lg, "Strecken").addTo(this.map)
   }
 
-  private createPolyline(item: Item): L.Polyline | null{
-    if (item.arrivalPoint && item.startingPoint) {
-      return L.polyline([
+  private createMarker(item: Item): L.Marker {
+      const marker = L.marker([item.position.Latitude, item.position.Longitude]);
+      marker.bindPopup(this.createPopupContent(item));
+      marker.on("click", () => this.handleMarkerClick(marker, item));
+    return marker;
+  }
+
+  private createRoutePolyline(item: Item, dashed: boolean = false): L.Polyline | null{
+    if (!item.isLoop) {
+      const line = L.polyline([
         [item.startingPoint.Latitude, item.startingPoint.Longitude],
         [item.arrivalPoint.Latitude, item.arrivalPoint.Longitude]
       ]);
+      if (dashed)
+        line.setStyle({dashArray: "5, 20"});
+      return line;
     }
     return null;
   }
+
+  private createArrivalCircle(item: Item): L.CircleMarker {
+    const pos: GpsInfo = item.isLoop ? item.startingPoint : item.arrivalPoint;
+    return L.circleMarker([pos.Latitude, pos.Longitude], {
+      radius: 5,
+      color: 'red',
+      fillColor: 'red',
+      fillOpacity: 0.8
+    });
+  }
+
 }
