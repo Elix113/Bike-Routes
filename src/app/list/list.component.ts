@@ -12,7 +12,7 @@ export class ListComponent implements OnInit {
   constructor(private cs: CyclingService) {}
 
   ngOnInit(): void {
-    this.cs.loadPage(1).then((items) => {
+    this.cs.load(1).then((items) => {
       this.items = items;
     });
   }
