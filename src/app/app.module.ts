@@ -23,13 +23,14 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ListComponent } from './list/list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
-    MarkerPopupComponent,
-    ListComponent
+    ListComponent,
+    MarkerPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +51,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     FlexModule,
     HttpClientModule,
     MatTooltipModule,
-    MatCardModule
+    MatCardModule,
     MatTableModule,
     MatTabsModule
   ],

@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 const routes: Routes = [
   {path:'map', component: MapComponent},
   {path:'list', component: ListComponent},
+  {path:'list/:view', component: ListComponent},
   {path:'', component: MapComponent}
 
 ];

@@ -1,17 +1,55 @@
-<mat-list>
-  <mat-list-item *ngFor="let item of items">
-    <span matListItemTitle>{{item.detail.Title}}</span>
-    <span matListItemLine>{{item.detail.MetaDesc}}</span>
-    <span matListItemLine>Koordinaten {{item.position.Latitude}}, {{item.position.Longitude}}</span>
-    <span matListItemLine>{{item.startingPoint.Altitude}}</span>
-    <span matListItemLine>{{item.arrivalPoint.Altitude}}</span>
-    </mat-list-item>
-  <mat-list-item>
-    <span matListItemTitle>Salt</span>
-    <span matListItemLine>Extracted from sea water</span>
-  </mat-list-item>
-  <mat-list-item>
-    <span matListItemTitle>Paprika</span>
-    <span matListItemLine>Produced by dried and ground red peppers</span>
-  </mat-list-item>
-</mat-list>
+  <div *ngIf="!cardView" class="list-container">
+    <table mat-table [dataSource]="items">
+
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> Titel </th>
+        <td mat-cell *matCellDef="let item"> {{item.detail.Title}} </td>
+      </ng-container>
+      <ng-container matColumnDef="coordinates">
+        <th mat-header-cell *matHeaderCellDef> Koordinaten </th>
+        <td mat-cell *matCellDef="let item"> {{item.position.Latitude}}, {{item.position.Longitude}} </td>
+      </ng-container>
+      <ng-container matColumnDef="startingAltitude">
+        <th mat-header-cell *matHeaderCellDef> Starthöhenmeter </th>
+        <td mat-cell *matCellDef="let item" class="mid-text"> {{item.startingPoint.Altitude}} m</td>
+      </ng-container>
+      <ng-container matColumnDef="arrivalAltitude">
+        <th mat-header-cell *matHeaderCellDef> Endhöhenmeter </th>
+        <td mat-cell *matCellDef="let item" class="mid-text"> {{item.arrivalPoint.Altitude}} m</td>
+      </ng-container>
+      <ng-container matColumnDef="heightDifference">
+        <th mat-header-cell *matHeaderCellDef> Höhenunterschied </th>
+        <td mat-cell *matCellDef="let item" class="mid-text"> {{getHeightDifference(item)}} m</td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let item">
+          <button mat-button (click)="showOnMap()">Auf Karte anzeigen</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+  </div>
+
+  <div *ngIf="cardView" class="card-container">
+    <mat-card *ngFor="let item of items" class="card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{item.detail.Title}}</mat-card-title>
+        <mat-card-subtitle>Koordinaten: {{item.position.Latitude}}, {{item.position.Longitude}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>Starthöhenmeter: {{item.startingPoint.Altitude}} m</p>
+        <p *ngIf="!item.isLoop">Endhöhenmeter: {{item.arrivalPoint.Altitude}} m</p>
+        <p *ngIf="!item.isLoop">Höhenunterschied: {{getHeightDifference(item)}} m</p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-button [routerLink]="'/map'">Auf Karte Anzeigen</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
