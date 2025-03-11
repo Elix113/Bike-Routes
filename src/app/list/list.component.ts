@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CyclingService } from '../shared/cycling-service';
 import { Item } from '../shared/Item';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'br-list',
@@ -13,14 +13,11 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['title', 'coordinates', 'startingAltitude', 'arrivalAltitude', 'heightDifference', 'action'];
   public cardView = true;
 
-  constructor(private cs: CyclingService, private route: ActivatedRoute) {}
+  constructor(private cs: CyclingService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
     this.cs.load().then((items) => {
       this.items = items;
-    });
-    this.route.params.subscribe(params => {
-      this.cardView = params['view'] != "1";
     });
   }
 
@@ -29,7 +26,10 @@ export class ListComponent implements OnInit {
   }
 
   showOnMap() {
-
+    // Implementiere die Logik, um die Route auf der Karte anzuzeigen
   }
 
+  toggleView(): void {
+    this.cardView = !this.cardView;
+  }
 }

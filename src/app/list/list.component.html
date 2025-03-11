@@ -45,11 +45,11 @@
         <mat-card-subtitle>Koordinaten: {{item.position.Latitude}}, {{item.position.Longitude}}</mat-card-subtitle>
       </mat-card-header>
 
-      <mat-card-content>
-        <p>Starthöhenmeter: {{item.startingPoint.Altitude}} m</p>
-        <p *ngIf="!item.isLoop">Endhöhenmeter: {{item.arrivalPoint.Altitude}} m</p>
-        <p *ngIf="!item.isLoop">Höhenunterschied: {{getHeightDifference(item)}} m</p>
-      </mat-card-content>
+    <mat-card-content>
+      <p>Starthöhenmeter: {{item.startingPoint.Altitude}} m</p>
+      <p *ngIf="!item.isLoop">Endhöhenmeter: {{item.arrivalPoint.Altitude}} m</p>
+      <p *ngIf="!item.isLoop">Höhenunterschied: {{getHeightDifference(item)}} m</p>
+    </mat-card-content>
 
       <mat-card-actions>
         <button mat-button [routerLink]="'/map'">Auf Karte Anzeigen</button>
@@ -62,3 +62,6 @@
 
   </div>
 
+<button mat-fab class="fab" (click)="toggleView()">
+  <mat-icon>{{ cardView ? 'menu' : 'grid_view' }}</mat-icon>
+</button>
