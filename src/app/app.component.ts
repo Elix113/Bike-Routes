@@ -14,7 +14,7 @@ export class AppComponent implements OnInit{
   constructor(private cs: CyclingService) {}
 
   ngOnInit(): void {
-    this.cs.load().then(items => {
+    this.cs.getItems().then(items => {
       this.items = items;
     });
   }

@@ -16,7 +16,7 @@ export class ListComponent implements OnInit {
   constructor(private cs: CyclingService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cs.load().then((items) => {
+    this.cs.getItems().then((items) => {
       this.items = items;
     });
   }

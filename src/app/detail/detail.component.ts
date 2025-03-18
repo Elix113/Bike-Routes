@@ -16,7 +16,7 @@ export class DetailComponent {
   constructor(private cyclingService: CyclingService){}
 
   async ngOnInit() {
-    await this.cyclingService.load(1).then((items) => {
+    await this.cyclingService.getItems().then((items) => {
       this.items = items
     });
     console.log(this.items)
