@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.tabPanel {
+  flex: 0 0 auto;
+  z-index: 1000;
+  background: white;
+}
+
+.tab-content {
+  flex: 1;
+  overflow: hidden;
+}
+
