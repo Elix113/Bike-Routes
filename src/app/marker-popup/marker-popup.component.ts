@@ -6,7 +6,7 @@ import { Item } from '../shared/Item';
   templateUrl: './marker-popup.component.html',
   styleUrls: ['./marker-popup.component.scss']
 })
-export class MarkerPopupComponent implements OnInit{
+export class MarkerPopupComponent implements OnInit {
   @Input() item!: Item;
   heightDifference!: number;
 
@@ -15,4 +15,7 @@ export class MarkerPopupComponent implements OnInit{
       this.heightDifference = Math.abs(this.item.startingPoint.Altitude - this.item.arrivalPoint.Altitude);
   }
 
+  openDetail(item: Item) {
+    console.log(item)
+  }
 }

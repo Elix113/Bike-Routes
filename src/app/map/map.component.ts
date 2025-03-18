@@ -6,6 +6,7 @@ import { Item } from '../shared/Item';
 import { AfterViewInit, Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BoundaryService } from '../shared/boundary.service';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
+import { timeout } from 'rxjs';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';

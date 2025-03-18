@@ -9,6 +9,7 @@ export class CyclingService {
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
   private finishedLoading: boolean = false;
+  private static sItems: Item[] = [];
 
 
   constructor() {}
