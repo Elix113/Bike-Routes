@@ -23,13 +23,15 @@ import { ListComponent } from './list/list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { DetailComponent } from './detail/detail.component';
+import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     ListComponent,
-    DetailComponent
+    DetailComponent,
+    MarkerPopupComponent
   ],
   imports: [
     BrowserModule,
