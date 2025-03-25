@@ -6,9 +6,10 @@ import { DetailComponent } from './detail/detail.component';
 
 const routes: Routes = [
   {path:'map', component: MapComponent},
-  {path:'map/:id', component: DetailComponent},
+  {path:'map/:id', component: MapComponent},
   {path:'list', component: ListComponent},
-  {path:'', component: MapComponent}
+  {path:':id', component: DetailComponent},
+  {path:'', component: ListComponent}
 
 ];
 

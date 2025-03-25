@@ -1,6 +1,7 @@
 import { CyclingService } from './../shared/cycling-service';
 import { Component } from '@angular/core';
 import { Item } from '../shared/Item';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'br-detail',
@@ -9,19 +10,20 @@ import { Item } from '../shared/Item';
 })
 export class DetailComponent {
   item!: Item;
-  items: Item[] = [];
   displayedColumns: string[] = ['key', 'value'];
   displayData:{ key: string; value: string; }[] = [];
 
-  constructor(private cyclingService: CyclingService){}
+  constructor(private ci: CyclingService, private route: ActivatedRoute){}
 
   async ngOnInit() {
-    await this.cyclingService.getItems().then((items) => {
-      this.items = items
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.ci.getItems().then(items => {
+        this.item = items.find(i => i.id === id) || items[0];
+        console.log(this.item);
+        this.displayData = this.transformItemToTableData(this.item)
+      })
     });
-    console.log(this.items)
-    this.item = this.items[0];
-    this.displayData = this.transformItemToTableData(this.item)
   }
 
 
@@ -35,7 +37,7 @@ export class DetailComponent {
       'detail.Title': 'Titel',
       'detail.Header': 'Überschrift',
       'detail.BaseText': 'Grundtext',
-      'detail.Language': 'Sprache',
+      // 'detail.Language': 'Sprache',
       'detail.MetaDesc': 'Meta-Beschreibung',
       'detail.MetaTitle': 'Meta-Titel',
       'detail.AuthorTip': 'Autorentipp',
@@ -78,6 +80,7 @@ export class DetailComponent {
       'position.AltitudeUnitofMeasure',
       'arrivalPoint.AltitudeUnitofMeasure',
       'startingPoint.AltitudeUnitofMeasure',
+      'detail.Language'
     ]);
 
     function extractValues(obj: any, prefix = '') {

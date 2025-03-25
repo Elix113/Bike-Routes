@@ -26,8 +26,7 @@ export class ListComponent implements OnInit {
   }
 
   showOnMap(item: Item) {
-    const id = item.id;
-    this.router.navigate(['map', id]);
+    this.router.navigate(['map', item.id]);
   }
 
   toggleView(): void {
@@ -35,6 +34,6 @@ export class ListComponent implements OnInit {
   }
 
   openDetail(item: Item) {
-    console.log(item)
+    this.router.navigate([item.id]);
   }
 }
