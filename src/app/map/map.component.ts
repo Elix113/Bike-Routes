@@ -23,6 +23,8 @@ const iconDefault = L.icon({
   shadowSize: [41, 41],
 });
 L.Marker.prototype.options.icon = iconDefault;
+const APIKEY = "?apikey=dd3b44af640d4614a8321de8a5486ed3"
+
 
 @Component({
   selector: 'br-map',
@@ -95,13 +97,13 @@ export class MapComponent implements OnInit, AfterViewInit {
       attribution: '© OpenStreetMap contributors',
     });
 
-    const outdoor = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png', {
+    const outdoor = L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png' + APIKEY, {
       maxZoom: 18,
       minZoom: 3,
       attribution: 'Maps © Thunderforest, Data © OpenStreetMap contributors'
     });
 
-    const cycle = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png', {
+    const cycle = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png' + APIKEY, {
       maxZoom: 18,
       minZoom: 3,
       attribution: 'Maps © Thunderforest, Data © OpenStreetMap contributors'
