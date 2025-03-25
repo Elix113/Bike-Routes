@@ -55,7 +55,8 @@ import { DetailComponent } from './detail/detail.component';
     MatTooltipModule,
     MatCardModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]
