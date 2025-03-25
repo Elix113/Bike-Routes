@@ -47,6 +47,21 @@ export class MapComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    //geht nicht weil this.mapReady.then(() => {} öfters ausgeführt wird und extrem viele marker geaddet werden
+    // const loadInterval = setInterval(() => {
+    //   this.cs.getItems().then(items => {
+    //     this.items = items;
+    //     if (this.cs.finishedLoading)
+    //       clearInterval(loadInterval);
+    //     this.mapReady.then(() => {
+    //       console.log("mapready")
+    //       this.addMarkers();
+    //       this.addRoutes();
+    //       if (this.idMarker)
+    //         setTimeout(() => this.idMarker.fire("click"), 500);
+    //     });
+    //   });
+    // }, 500);
     this.cs.getItems().then((items) => {
       this.items = items;
       this.mapReady.then(() => {

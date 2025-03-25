@@ -25,6 +25,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { DetailComponent } from './detail/detail.component';
+import { MenuComponent } from './menu/menu.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSelectModule } from '@angular/material/select';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +36,8 @@ import { DetailComponent } from './detail/detail.component';
     MapComponent,
     ListComponent,
     DetailComponent,
-    MarkerPopupComponent
+    MarkerPopupComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,8 @@ import { DetailComponent } from './detail/detail.component';
     MatCardModule,
     MatTableModule,
     MatTabsModule,
+    MatDialogModule,
+    MatSelectModule
 
   ],
   providers: [CyclingService, BoundaryService, HttpClient],

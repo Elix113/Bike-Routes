@@ -18,6 +18,9 @@
     >
       Map
     </a>
+    <button mat-icon-button class="menu" color="accent" disableRipple (click)="openMenu()">
+      <mat-icon>tune</mat-icon>
+    </button>
   </nav>
   <mat-tab-nav-panel #tabPanel class="tab-content">
     <router-outlet></router-outlet>

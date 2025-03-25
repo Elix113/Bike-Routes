@@ -16,9 +16,17 @@ export class ListComponent implements OnInit {
   constructor(private cs: CyclingService, private router: Router) {}
 
   ngOnInit(): void {
-    this.cs.getItems().then((items) => {
-      this.items = items;
-    });
+    if (this.cs.finishedLoading)
+      this.cs.getItems().then(items => this.items = items);
+    else {
+      const loadInterval = setInterval(() => {
+        this.cs.getItems().then(items => {
+          this.items = items;
+          if (this.cs.finishedLoading)
+            clearInterval(loadInterval);
+        });
+      }, 500);
+    }
   }
 
   getHeightDifference(item: Item): number | null {

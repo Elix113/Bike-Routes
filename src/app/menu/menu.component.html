@@ -1,0 +1,19 @@
+<mat-dialog-content>
+  <h2>Einstellungen</h2>
+  <hr>
+
+  <mat-form-field class="language">
+    <mat-label>Sprache auswählen</mat-label>
+    <mat-select [(ngModel)]="language" (selectionChange)="onLaguagechange($event.value)">
+      <mat-option *ngFor="let l of languages" [value]="l.code">{{ l.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="volume-div">
+    <button mat-button color="accent" (click)="decreaseVolume()" tabindex="-1" [disabled]="volume <= 0"><b>-</b></button>
+    <input type="range" min="0" max="100" [value]="volume" disabled  matTooltip="Lautstärke ändert sich um 1% relativ zu den aktuellen %">
+    <span>{{ volume | number:'1.3-3' }}%</span>
+    <button mat-button color="accent" (click)="increaseVolume()" tabindex="-1" [disabled]="volume >= 100"><b>+</b></button>
+  </div>
+
+</mat-dialog-content>

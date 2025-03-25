@@ -5,24 +5,18 @@ import { Detail, GpsInfo, Item, Language, Other } from "./Item";
 export class CyclingService {
 
   private readonly URL = "https://tourism.api.opendatahub.com/v1/ODHActivityPoi?tagfilter=cycling";
-  private language: Language = Language.DE;
+  private static language: Language = Language.DE;
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
-  private finishedLoading: boolean = false;
+  private static finishedLoading: boolean = false;
   private static sItems: [Item, boolean][] = [];
 
 
   constructor() {}
 
   public async getItems(page: number = 0, reduce: boolean = true): Promise<Item[]> {
-    let tempItems: [Item, boolean][] = [];
-    if (CyclingService.sItems.length > 0) {
-      tempItems = CyclingService.sItems;
-    }
-    else {
+    if (CyclingService.sItems.length <= 0)
       await this.load(page);
-      tempItems = this.ITEMS;
-    }
     if (reduce) {
       const items = this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
       console.log(`${items.length} verwendbare Einträge`);
@@ -36,11 +30,11 @@ export class CyclingService {
 
   public async changeLanguage(language: Language): Promise<Item[]> {
     if (this.finishedLoading) {
-      this.language = language;
+      CyclingService.language = language;
       this.ITEMS.forEach((i, index) => {
-        i[0].detail = this.getDetail(this.RAW_ITEMS[index])
+        i[0].detail = this.getDetail(this.RAW_ITEMS[index]);
     });
-      console.log(`Sprache zu ${this.language} geändert`);
+      console.log(`Sprache zu ${CyclingService.language} geändert`);
       return this.getItems();
     }
     else {
@@ -49,8 +43,12 @@ export class CyclingService {
     }
   }
 
-  public getLanguage(): Language {
-    return this.language;
+  public get language(): Language {
+    return CyclingService.language;
+  }
+
+  public get finishedLoading(): boolean {
+    return CyclingService.finishedLoading;
   }
 
   //Too many requests, des isch die Wild methode ober funkt net
@@ -87,7 +85,7 @@ export class CyclingService {
   private async loadPage(page: number): Promise<void> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
-    this.finishedLoading = false;
+    CyclingService.finishedLoading = false;
     try {
       const response = await fetch(this.URL + `&pagenumber=${page}`);
       if (!response.ok)
@@ -95,7 +93,7 @@ export class CyclingService {
       const data = await response.json();
       this.RAW_ITEMS = data.Items ;
       this.addItems(data.Items);
-      this.finishedLoading = true;
+      CyclingService.finishedLoading = true;
       console.log(`Seite ${page} geladen: ${this.ITEMS.length} Einträge`);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
@@ -105,7 +103,7 @@ export class CyclingService {
   private async loadAll(): Promise<void> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
-    this.finishedLoading = false;
+    CyclingService.finishedLoading = false;
     let nextPage: string | null = this.URL + "&pagenumber=1";
     try {
         while (nextPage) {
@@ -116,7 +114,7 @@ export class CyclingService {
             this.addItems(data.Items);
             nextPage = data.NextPage;
         }
-        this.finishedLoading = true;
+        CyclingService.finishedLoading = true;
         console.log(`Alle Seiten geladen: ${this.ITEMS.length} Einträge`);
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
@@ -187,7 +185,7 @@ export class CyclingService {
   }
 
   private getDetail(rawItem: any): Detail {
-    return rawItem.Detail[this.language];
+    return rawItem.Detail[CyclingService.language];
   }
 
   private getIsOpen(rawItem: any): boolean {
