@@ -32,14 +32,15 @@ export class DetailComponent implements OnInit{
 
     // Mapping of technical keys to user-friendly labels
     const keyMapping: Record<string, string> = {
+      'isLoop': 'Rundtour',
       'firstImport': 'Erstes Importdatum',
       'lastUpdate': 'Letzte Aktualisierung',
       'detail.Title': 'Titel',
       'detail.Header': 'Überschrift',
       'detail.BaseText': 'Grundtext',
-      // 'detail.Language': 'Sprache',
-      'detail.MetaDesc': 'Meta-Beschreibung',
-      'detail.MetaTitle': 'Meta-Titel',
+      //'detail.Language': 'Sprache',
+      'detail.MetaDesc': 'Beschreibung',
+      //'detail.MetaTitle': 'Meta-Titel',
       'detail.AuthorTip': 'Autorentipp',
       'detail.IntroText': 'Einleitungstext',
       'detail.SubHeader': 'Unterüberschrift',
@@ -49,9 +50,9 @@ export class DetailComponent implements OnInit{
       'detail.EquipmentInfo': 'Ausrüstungsinformationen',
       'detail.AdditionalText': 'Zusätzliche Informationen',
       'detail.PublicTransportationInfo': 'Öffentliche Verkehrsmittel',
-      'position.Altitude': 'Höhe',
-      'position.Latitude': 'Breitengrad',
-      'position.Longitude': 'Längengrad',
+      //'position.Altitude': 'Höhe',
+      //'position.Latitude': 'Breitengrad',
+      //'position.Longitude': 'Längengrad',
       'startingPoint.Altitude': 'Startpunkt-Höhe',
       'startingPoint.Latitude': 'Startpunkt-Breitengrad',
       'startingPoint.Longitude': 'Startpunkt-Längengrad',
@@ -59,9 +60,9 @@ export class DetailComponent implements OnInit{
       'arrivalPoint.Latitude': 'Zielpunkt-Breitengrad',
       'arrivalPoint.Longitude': 'Zielpunkt-Längengrad',
       'other.Highlight': 'Highlight',
-      'other.OdhActive': 'ODH Aktiv',
-      'other.Shortname': 'Kurzname',
-      'other.SmgActive': 'SMG Aktiv',
+      //'other.OdhActive': 'ODH Aktiv',
+      //'other.Shortname': 'Kurzname',
+      //'other.SmgActive': 'SMG Aktiv',
       'other.WayNumber': 'Wegnummer',
       'other.Difficulty': 'Schwierigkeitsgrad',
       'other.Exposition': 'Exposition',
@@ -80,7 +81,14 @@ export class DetailComponent implements OnInit{
       'position.AltitudeUnitofMeasure',
       'arrivalPoint.AltitudeUnitofMeasure',
       'startingPoint.AltitudeUnitofMeasure',
-      'detail.Language'
+      'detail.Language',
+      'other.OdhActive',
+      'other.SmgActive',
+      'detail.MetaTitle',
+      'other.Shortname',
+      'position.Altitude',
+      'position.Latitude',
+      'position.Longitude'
     ]);
 
     function extractValues(obj: any, prefix = '') {
