@@ -26,14 +26,13 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
 import { DetailComponent } from './detail/detail.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     ListComponent,
-    MarkerPopupComponent,
-    DetailComponent
+    DetailComponent,
+    MarkerPopupComponent
   ],
   imports: [
     BrowserModule,

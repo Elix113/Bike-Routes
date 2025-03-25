@@ -6,6 +6,8 @@ import { Item } from '../shared/Item';
 import { AfterViewInit, Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BoundaryService } from '../shared/boundary.service';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
+import { timeout } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
 const iconUrl = 'assets/marker-icon.png';
@@ -30,21 +32,30 @@ L.Marker.prototype.options.icon = iconDefault;
 export class MapComponent implements OnInit, AfterViewInit {
   private readonly CENTER: number[] = [46.49925004294629, 11.332801353356082];
   private map!: L.Map;
-  private items!: Item[];
+  public items!: Item[];
   private mapReady!: Promise<void>;
   private resolveMapReady!: () => void;
   private layerControl!: L.Control.Layers;
+  private idMarker!: L.Marker;
+  public displayMap!: boolean;
 
   private boundary!: GeoJsonObject;
 
-  constructor(private cs: CyclingService, private bs: BoundaryService, private viewContainerRef: ViewContainerRef) {}
+  constructor(private cs: CyclingService,
+    private bs: BoundaryService,
+    private viewContainerRef: ViewContainerRef,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.cs.load(3).then((items) => {
+    this.cs.getItems().then((items) => {
       this.items = items;
+      this.displayMap = true;
       this.mapReady.then(() => {
         this.addMarkers();
         this.addRoutes();
+        if (this.idMarker)
+          setTimeout(() => this.idMarker.fire("click"), 500);
       });
     });
     this.bs.loadSTBoundary().then(boundary => {
@@ -103,11 +114,16 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private addMarkers() {
     const markers: L.Marker[] = []
-    for (const item of this.items) {
-      markers.push(this.createMarker(item));
-    }
-    const lg: L.LayerGroup = L.layerGroup(markers).addTo(this.map);
-    this.layerControl.addOverlay(lg, "Pins").addTo(this.map)
+    this.route.params.subscribe(params => {
+      for (const item of this.items) {
+        const m = this.createMarker(item);
+        markers.push(m);
+        if (item.id == params['id'])
+          this.idMarker = m;
+      }
+      const lg: L.LayerGroup = L.layerGroup(markers).addTo(this.map);
+      this.layerControl.addOverlay(lg, "Pins").addTo(this.map);
+    });
   }
 
   private createPopupContent(item: Item): HTMLElement {

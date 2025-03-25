@@ -9,29 +9,32 @@ export class CyclingService {
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
   private finishedLoading: boolean = false;
+  private static sItems: [Item, boolean][] = [];
 
 
   constructor() {}
 
-  public getItems(reduce: boolean = true): Item[] {
-    if (this.finishedLoading) {
-      if (reduce) {
-        const items = this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
-        console.log(`${items.length} verwendbare Einträge`);
-        return items;
-      }
-      else {
-        console.log(`${this.ITEMS.length} Einträge`);
-        return this.ITEMS.map(([item, flag]) => item);
-      }
+  public async getItems(page: number = 0, reduce: boolean = true): Promise<Item[]> {
+    let tempItems: [Item, boolean][] = [];
+    if (CyclingService.sItems.length > 0) {
+      tempItems = CyclingService.sItems;
     }
     else {
-      console.error("Items sind noch nicht geladen");
-      return [];
+      await this.load(page);
+      tempItems = this.ITEMS;
+    }
+    if (reduce) {
+      const items = this.ITEMS.filter(([item, flag]) => flag).map(([item, flag]) => item);
+      console.log(`${items.length} verwendbare Einträge`);
+      return items;
+    }
+    else {
+      console.log(`${this.ITEMS.length} Einträge`);
+      return this.ITEMS.map(([item, flag]) => item);
     }
   }
 
-  public changeLanguage(language: Language): Item[] {
+  public async changeLanguage(language: Language): Promise<Item[]> {
     if (this.finishedLoading) {
       this.language = language;
       this.ITEMS.forEach((i, index) => {
@@ -77,11 +80,11 @@ export class CyclingService {
   //   }
   // }
 
-  public load(page: number = 0, reduce: boolean = true): Promise<Item[]> {
-      return page === 0 ? this.loadAll(reduce) : this.loadPage(page, reduce);
+  private load(page: number = 0): Promise<void> {
+      return page === 0 ? this.loadAll() : this.loadPage(page);
   }
 
-  private async loadPage(page: number, reduce: boolean = true): Promise<Item[]> {
+  private async loadPage(page: number): Promise<void> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
     this.finishedLoading = false;
@@ -97,10 +100,9 @@ export class CyclingService {
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
-    return this.getItems(reduce);
   }
 
-  private async loadAll(reduce: boolean = true): Promise<Item[]> {
+  private async loadAll(): Promise<void> {
     this.RAW_ITEMS = [];
     this.ITEMS = [];
     this.finishedLoading = false;
@@ -119,7 +121,6 @@ export class CyclingService {
     } catch (error) {
         console.error("Fehler beim Abrufen der Daten:", error);
     }
-    return this.getItems(reduce);
   }
 
   private addItems(rawItems: any[]) {
@@ -136,6 +137,7 @@ export class CyclingService {
         this.getOther(rawItem),
       );
       this.ITEMS.push([item, this.isValid(item)]);
+      CyclingService.sItems.push([item, this.isValid(item)]);
     })
   }
 
