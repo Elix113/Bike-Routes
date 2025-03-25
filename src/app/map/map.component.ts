@@ -1,12 +1,12 @@
 import { GpsInfo } from './../shared/Item';
 import { GeoJsonObject } from './../../../node_modules/@types/geojson/index.d';
 import * as L from 'leaflet';
+import 'leaflet.markercluster';
 import { CyclingService } from '../shared/cycling-service';
 import { Item } from '../shared/Item';
 import { AfterViewInit, Component, OnInit, ViewContainerRef } from '@angular/core';
 import { BoundaryService } from '../shared/boundary.service';
 import { MarkerPopupComponent } from '../marker-popup/marker-popup.component';
-import { timeout } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
@@ -37,7 +37,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   private resolveMapReady!: () => void;
   private layerControl!: L.Control.Layers;
   private idMarker!: L.Marker;
-  public displayMap!: boolean;
 
   private boundary!: GeoJsonObject;
 
@@ -50,7 +49,6 @@ export class MapComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.cs.getItems().then((items) => {
       this.items = items;
-      this.displayMap = true;
       this.mapReady.then(() => {
         this.addMarkers();
         this.addRoutes();
@@ -122,6 +120,15 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.idMarker = m;
       }
       const lg: L.LayerGroup = L.layerGroup(markers).addTo(this.map);
+      // const lg: L.MarkerClusterGroup = L.markerClusterGroup({
+      //   iconCreateFunction: (cluster) => {
+      //     const markers = cluster.getAllChildMarkers();
+      //     const firstMarker = markers[0];
+      //     return firstMarker.getIcon();
+      //   }
+      // });
+      // lg.addLayer(markers);
+      // this.map.addLayer(lg);
       this.layerControl.addOverlay(lg, "Pins").addTo(this.map);
     });
   }
