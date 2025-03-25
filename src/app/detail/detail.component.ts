@@ -1,5 +1,5 @@
 import { CyclingService } from './../shared/cycling-service';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/Item';
 
 @Component({
@@ -7,7 +7,7 @@ import { Item } from '../shared/Item';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.scss']
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit{
   item!: Item;
   items: Item[] = [];
   displayedColumns: string[] = ['key', 'value'];

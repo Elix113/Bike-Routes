@@ -24,13 +24,16 @@ import { ListComponent } from './list/list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
+import { DetailComponent } from './detail/detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     MapComponent,
     ListComponent,
-    MarkerPopupComponent
+    MarkerPopupComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { MarkerPopupComponent } from './marker-popup/marker-popup.component';
     MatTooltipModule,
     MatCardModule,
     MatTableModule,
-    MatTabsModule
+    MatTabsModule,
+
   ],
   providers: [CyclingService, BoundaryService, HttpClient],
   bootstrap: [AppComponent]
