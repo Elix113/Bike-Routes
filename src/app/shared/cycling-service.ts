@@ -9,6 +9,7 @@ export class CyclingService {
   private RAW_ITEMS: any[] = [];
   private ITEMS: [Item, boolean][] = []
   private static finishedLoading: boolean = false;
+  private isLoading: boolean = false;
   private static sItems: [Item, boolean][] = [];
 
 
@@ -79,7 +80,7 @@ export class CyclingService {
   // }
 
   private load(page: number = 0): Promise<void> {
-      return page === 0 ? this.loadAll() : this.loadPage(page);
+    return page === 0 ? this.loadAll() : this.loadPage(page);
   }
 
   private async loadPage(page: number): Promise<void> {

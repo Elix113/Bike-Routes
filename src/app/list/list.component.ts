@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 })
 export class ListComponent implements OnInit {
   public items!: Item[];
+  public filteredItems!: Item[];
+  public searchTerm: string = "";
   displayedColumns: string[] = ['title', 'coordinates', 'startingAltitude', 'arrivalAltitude', 'heightDifference', 'action'];
   public cardView = true;
 
@@ -17,11 +19,16 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cs.finishedLoading)
-      this.cs.getItems().then(items => this.items = items);
-    else {
-      const loadInterval = setInterval(() => {
-        this.cs.getItems().then(items => {
-          this.items = items;
+      this.cs.getItems().then(items => {
+        this.items = items;
+        this.filteredItems = items;
+        this.applyFilter(this.searchTerm);
+    	});
+      else {
+        const loadInterval = setInterval(() => {
+          this.cs.getItems().then(items => {
+            this.items = items;
+            this.applyFilter(this.searchTerm);
           if (this.cs.finishedLoading)
             clearInterval(loadInterval);
         });
@@ -43,5 +50,13 @@ export class ListComponent implements OnInit {
 
   openDetail(item: Item) {
     this.router.navigate([item.id]);
+  }
+
+  applyFilter(term: string) {
+    this.searchTerm = term.toLowerCase();
+    this.filteredItems = this.items.filter(item => {
+      return item.detail.Title.toLowerCase().includes(this.searchTerm)
+      || (item.detail.MetaDesc && item.detail.MetaDesc.toLowerCase().includes(this.searchTerm));
+    });
   }
 }
