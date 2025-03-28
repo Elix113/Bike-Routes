@@ -1,7 +1,7 @@
 import { CyclingService } from './../shared/cycling-service';
 import { Component, OnInit } from '@angular/core';
 import { Item } from '../shared/Item';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 
 @Component({
   selector: 'br-detail',
@@ -13,14 +13,13 @@ export class DetailComponent implements OnInit{
   displayedColumns: string[] = ['key', 'value'];
   displayData:{ key: string; value: string; }[] = [];
 
-  constructor(private ci: CyclingService, private route: ActivatedRoute){}
+  constructor(private ci: CyclingService, private route: ActivatedRoute, private router: Router){}
 
   async ngOnInit() {
     this.route.params.subscribe(params => {
       const id = params['id'];
       this.ci.getItems().then(items => {
         this.item = items.find(i => i.id === id) || items[0];
-        console.log(this.item);
         this.displayData = this.transformItemToTableData(this.item)
       })
     });
@@ -130,7 +129,7 @@ export class DetailComponent implements OnInit{
     return result;
   }
 
-
-
-
+  showOnMap(item: Item) {
+    this.router.navigate(['map', item.id]);
+  }
 }

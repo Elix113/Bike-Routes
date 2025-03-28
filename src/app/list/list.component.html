@@ -1,6 +1,7 @@
 <mat-form-field class="searchbar">
   <mat-label>Suche</mat-label>
-  <input matInput #search (input)="applyFilter(search.value)" placeholder="Tippe, um zu suchen...">
+  <input matInput #search (input)="applyFilter(search.value)" placeholder="Titel, Beschreibung">
+  <mat-icon matIconSuffix>search</mat-icon>
 </mat-form-field>
 
   <div *ngIf="!cardView" class="list-container">

@@ -11,6 +11,9 @@
     <ng-container matColumnDef="value">
       <td mat-cell *matCellDef="let element; let i = index" [ngClass]="{'title-row': i === 0}">
         {{ element.value }}
+        <button mat-icon-button *ngIf="i == 0" (click)="showOnMap(item)" matTooltip="Auf Karte anzeigen">
+          <mat-icon>pin_drop</mat-icon>
+        </button>
       </td>
     </ng-container>
 

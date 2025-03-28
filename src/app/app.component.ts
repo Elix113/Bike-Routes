@@ -11,18 +11,25 @@ import { MenuComponent } from './menu/menu.component';
 })
 export class AppComponent implements OnInit{
   title = 'BikeRoutes';
-  items!: Item[];
+  public finishedLoading = false;
 
   constructor(private cs: CyclingService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    const loadInterval = setInterval(() => {
+      this.finishedLoading = this.cs.finishedLoading;
+      if (this.finishedLoading)
+        clearInterval(loadInterval);
+    }, 500);
   }
 
   openMenu() {
-    this.dialog.open(MenuComponent, {
-      width: '400px',
-      disableClose: false,
-    });
+    if (this.finishedLoading) {
+      this.dialog.open(MenuComponent, {
+        width: '400px',
+        disableClose: false,
+      });
+    }
   }
 
 
